@@ -1,1 +1,2 @@
-import State from './state.ts';
+import State from './State';
+import Action from './action/Action';

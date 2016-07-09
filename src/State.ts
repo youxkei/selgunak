@@ -1,21 +1,20 @@
-interface Project {
+export interface Project {
     title: string,
     tasks: Task[],
 }
 
-interface Task {
+export interface Task {
     title: string,
     estimation: Date,
-    logs: Log[],
-    children: Task[],
+    timeTrackings: TimeTracking[],
 }
 
-interface Log {
+export interface TimeTracking {
     start: Date,
     end: Date,
 }
 
-interface Sprint {
+export interface Sprint {
     title: string,
     start: Date,
     End: Date,
