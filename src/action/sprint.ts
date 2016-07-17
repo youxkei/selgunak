@@ -5,10 +5,12 @@ import { Sprint, Task } from '../State';
 export interface CreateSprintAction {
     type: ActionType,
     title: string,
+    begin: Date,
+    end: Date,
 }
 
-export function createSprint(title: string): CreateSprintAction {
-    return { type: ActionType.CREATE_SPRINT, title };
+export function createSprint(title: string, begin: Date, end: Date): CreateSprintAction {
+    return { type: ActionType.CREATE_SPRINT, title, begin, end };
 }
 
 export function isCreateSprintAction(action: Action): action is CreateSprintAction {
@@ -18,12 +20,14 @@ export function isCreateSprintAction(action: Action): action is CreateSprintActi
 
 export interface UpdateSprintAction {
     type: ActionType,
-    sprint: Sprint,
+    sprintId: number,
     title: string,
+    begin: Date,
+    end: Date,
 }
 
-export function updateSprint(sprint: Sprint, title: string): UpdateSprintAction {
-    return { type: ActionType.UPDATE_SPRINT, sprint, title };
+export function updateSprint(sprintId: number, title: string, begin: Date, end: Date): UpdateSprintAction {
+    return { type: ActionType.UPDATE_SPRINT, sprintId, title, begin, end };
 }
 
 export function isUpdateSprintAction(action: Action): action is UpdateSprintAction {
@@ -33,11 +37,11 @@ export function isUpdateSprintAction(action: Action): action is UpdateSprintActi
 
 export interface DeleteSprintAction {
     type: ActionType,
-    sprint: Sprint,
+    sprintId: number,
 }
 
-export function deleteSprint(sprint: Sprint): DeleteSprintAction {
-    return { type: ActionType.DELETE_SPRINT, sprint };
+export function deleteSprint(sprintId: number): DeleteSprintAction {
+    return { type: ActionType.DELETE_SPRINT, sprintId };
 }
 
 export function isDeleteSprintAction(action: Action): action is DeleteSprintAction {
@@ -47,12 +51,12 @@ export function isDeleteSprintAction(action: Action): action is DeleteSprintActi
 
 export interface RegisterTaskToSprintAction {
     type: ActionType,
-    sprint: Sprint,
-    task: Task,
+    sprintId: number,
+    taskId: number,
 }
 
-export function registerTaskToSprint(sprint: Sprint, task: Task): RegisterTaskToSprintAction {
-    return { type: ActionType.REGISTER_TASK_TO_SPRINT, sprint, task };
+export function registerTaskToSprint(sprintId: number, taskId: number): RegisterTaskToSprintAction {
+    return { type: ActionType.REGISTER_TASK_TO_SPRINT, sprintId, taskId };
 }
 
 export function isRegisterTaskToSprintAction(action: Action): action is RegisterTaskToSprintAction {
@@ -62,12 +66,12 @@ export function isRegisterTaskToSprintAction(action: Action): action is Register
 
 export interface UnregisterTaskFromSprintAction {
     type: ActionType,
-    sprint: Sprint,
-    task: Task,
+    sprintId: number,
+    taskId: number,
 }
 
-export function unregisterTaskFromSprint(sprint: Sprint, task: Task): UnregisterTaskFromSprintAction {
-    return { type: ActionType.UNREGISTER_TASK_FROM_SPRINT, sprint, task };
+export function unregisterTaskFromSprint(sprintId: number, taskId: number): UnregisterTaskFromSprintAction {
+    return { type: ActionType.UNREGISTER_TASK_FROM_SPRINT, sprintId, taskId };
 }
 
 export function isUnregisterTaskFromSprintAction(action: Action): action is UnregisterTaskFromSprintAction {

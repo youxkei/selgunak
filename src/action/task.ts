@@ -4,12 +4,14 @@ import { Task } from '../State';
 
 export interface CreateTaskAction {
     type: ActionType,
+    projectId: number,
+    parentId: number,
     title: string,
     estimation: Date,
 }
 
-export function createTask(title: string, estimation: Date): CreateTaskAction {
-    return { type: ActionType.CREATE_TASK, title, estimation };
+export function createTask(projectId: number, parentId: number, title: string, estimation: Date): CreateTaskAction {
+    return { type: ActionType.CREATE_TASK, projectId, parentId, title, estimation };
 }
 
 export function isCreateTaskAction(action: Action): action is CreateTaskAction {
@@ -19,13 +21,13 @@ export function isCreateTaskAction(action: Action): action is CreateTaskAction {
 
 export interface UpdateTaskAction {
     type: ActionType,
-    task: Task,
+    taskId: number,
     title: string,
     estimation: Date,
 }
 
-export function updateTask(task: Task, title: string, estimation: Date): UpdateTaskAction {
-    return { type: ActionType.UPDATE_TASK, task, title, estimation };
+export function updateTask(taskId: number, title: string, estimation: Date): UpdateTaskAction {
+    return { type: ActionType.UPDATE_TASK, taskId, title, estimation };
 }
 
 export function isUpdateTaskAction(action: Action): action is UpdateTaskAction {
@@ -35,11 +37,11 @@ export function isUpdateTaskAction(action: Action): action is UpdateTaskAction {
 
 export interface DeleteTaskAction {
     type: ActionType,
-    task: Task,
+    taskId: number,
 }
 
-export function deleteTask(task: Task): DeleteTaskAction {
-    return { type: ActionType.DELETE_TASK, task };
+export function deleteTask(taskId: number): DeleteTaskAction {
+    return { type: ActionType.DELETE_TASK, taskId };
 }
 
 export function isDeleteTaskAction(action: Action): action is DeleteTaskAction {

@@ -18,12 +18,12 @@ export function isCreateProjectAction(action: Action): action is CreateProjectAc
 
 export interface UpdateProjectAction {
     type: ActionType,
-    project: Project,
+    projectId: number,
     title: string,
 }
 
-export function updateProject(project: Project, title: string): UpdateProjectAction {
-    return { type: ActionType.CREATE_PROJECT, project, title };
+export function updateProject(projectId: number, title: string): UpdateProjectAction {
+    return { type: ActionType.CREATE_PROJECT, projectId, title };
 }
 
 export function isUpdateProjectAction(action: Action): action is UpdateProjectAction {
@@ -33,11 +33,11 @@ export function isUpdateProjectAction(action: Action): action is UpdateProjectAc
 
 export interface DeleteProjectAction {
     type: ActionType,
-    project: Project,
+    projectId: number,
 }
 
-export function deleteProject(project: Project): DeleteProjectAction {
-    return { type: ActionType.DELETE_PROJECT, project };
+export function deleteProject(projectId: number): DeleteProjectAction {
+    return { type: ActionType.DELETE_PROJECT, projectId };
 }
 
 export function isDeleteProjectAction(action: Action): action is DeleteProjectAction {

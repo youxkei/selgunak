@@ -1,30 +1,52 @@
 export interface Project {
+    id: number,
+    index: number,
+
     title: string,
-    tasks: Task[],
 }
 
 export interface Task {
+    id: number,
+    index: number,
+
+    parentId: number,
+    projectId: number,
+
     title: string,
     estimation: Date,
-    timeTrackings: TimeTracking[],
 }
 
 export interface TimeTracking {
-    start: Date,
+    id: number,
+
+    taskId: number,
+
+    begin: Date,
     end: Date,
 }
 
 export interface Sprint {
+    id: number,
+    index: number,
+
     title: string,
-    start: Date,
-    End: Date,
-    tasks: Task[],
-    isActive: boolean,
+    begin: Date,
+    end: Date,
+}
+
+export interface TaskSprintRelation {
+    id: number,
+
+    taskId: number,
+    sprintId: number,
 }
 
 export interface State {
     projects: Project[],
+    tasks: Task[],
+    timeTrackings: TimeTracking[],
     sprints: Sprint[],
+    taskSprintRelations: TaskSprintRelation[],
 }
 
 export default State;
