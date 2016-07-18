@@ -1,25 +1,21 @@
-import { Action, ActionType } from './Action.ts';
+import Action from './Action.ts';
 import { Sprint, Task } from '../State';
 
 
 export interface CreateSprintAction {
-    type: ActionType,
+    type: 'CreateSprint',
     title: string,
     begin: Date,
     end: Date,
 }
 
 export function createSprint(title: string, begin: Date, end: Date): CreateSprintAction {
-    return { type: ActionType.CREATE_SPRINT, title, begin, end };
-}
-
-export function isCreateSprintAction(action: Action): action is CreateSprintAction {
-    return action.type === ActionType.CREATE_SPRINT;
+    return { type: 'CreateSprint', title, begin, end };
 }
 
 
 export interface UpdateSprintAction {
-    type: ActionType,
+    type: 'UpdateSprint',
     sprintId: number,
     title: string,
     begin: Date,
@@ -27,53 +23,37 @@ export interface UpdateSprintAction {
 }
 
 export function updateSprint(sprintId: number, title: string, begin: Date, end: Date): UpdateSprintAction {
-    return { type: ActionType.UPDATE_SPRINT, sprintId, title, begin, end };
-}
-
-export function isUpdateSprintAction(action: Action): action is UpdateSprintAction {
-    return action.type === ActionType.UPDATE_SPRINT;
+    return { type: 'UpdateSprint', sprintId, title, begin, end };
 }
 
 
 export interface DeleteSprintAction {
-    type: ActionType,
+    type: 'DeleteSprint',
     sprintId: number,
 }
 
 export function deleteSprint(sprintId: number): DeleteSprintAction {
-    return { type: ActionType.DELETE_SPRINT, sprintId };
-}
-
-export function isDeleteSprintAction(action: Action): action is DeleteSprintAction {
-    return action.type === ActionType.DELETE_SPRINT;
+    return { type: 'DeleteSprint', sprintId };
 }
 
 
 export interface RegisterTaskToSprintAction {
-    type: ActionType,
+    type: 'RegisterTaskToSprint',
     sprintId: number,
     taskId: number,
 }
 
 export function registerTaskToSprint(sprintId: number, taskId: number): RegisterTaskToSprintAction {
-    return { type: ActionType.REGISTER_TASK_TO_SPRINT, sprintId, taskId };
-}
-
-export function isRegisterTaskToSprintAction(action: Action): action is RegisterTaskToSprintAction {
-    return action.type === ActionType.REGISTER_TASK_TO_SPRINT;
+    return { type: 'RegisterTaskToSprint', sprintId, taskId };
 }
 
 
 export interface UnregisterTaskFromSprintAction {
-    type: ActionType,
+    type: 'UnregisterTaskFromSprint',
     sprintId: number,
     taskId: number,
 }
 
 export function unregisterTaskFromSprint(sprintId: number, taskId: number): UnregisterTaskFromSprintAction {
-    return { type: ActionType.UNREGISTER_TASK_FROM_SPRINT, sprintId, taskId };
-}
-
-export function isUnregisterTaskFromSprintAction(action: Action): action is UnregisterTaskFromSprintAction {
-    return action.type === ActionType.UNREGISTER_TASK_FROM_SPRINT;
+    return { type: 'UnregisterTaskFromSprint', sprintId, taskId };
 }

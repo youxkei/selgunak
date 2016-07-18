@@ -14,7 +14,7 @@
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "ts-loader": "^0.8.2",
-    "typescript": "^1.8.10",
+    "typescript": "^2.1.0-dev.20160718",
     "webpack": "^1.13.1"
   }
 }
