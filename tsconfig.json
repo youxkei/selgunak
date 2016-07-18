@@ -9,6 +9,7 @@
         "listFiles": true,
         "noEmitOnError": true,
         "jsx": "react",
+        "strictNullChecks": true,
         "pretty": true
     },
     "exclude": [

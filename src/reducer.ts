@@ -37,6 +37,10 @@ function projects(projects: Project[] = [], action: Action): Project[] {
 
             return projects.filter(project => project.id !== projectId);
         }
+
+        default: {
+            return projects;
+        }
     }
 }
 
@@ -66,6 +70,10 @@ function tasks(tasks: Task[] = [], action: Action): Task[] {
 
             return tasks.filter(task => task.id !== taskId);
         }
+
+        default: {
+            return tasks;
+        }
     }
 }
 
@@ -88,6 +96,10 @@ function timeTrackings(timeTrackings: TimeTracking[], action: Action): TimeTrack
                     return timeTracking;
                 }
             });
+        }
+
+        default: {
+            return timeTrackings;
         }
     }
 }
@@ -118,6 +130,10 @@ function sprints(sprints: Sprint[], action: Action): Sprint[] {
 
             return sprints.filter(sprint => sprint.id !== sprintId);
         }
+
+        default: {
+            return sprints;
+        }
     }
 }
 
@@ -134,6 +150,10 @@ function taskSprintRelations(taskSprintRelations: TaskSprintRelation[], action: 
             const { taskId, sprintId } = action;
 
             return taskSprintRelations.filter(taskSprintRelation => taskSprintRelation.taskId !== taskId || taskSprintRelation.sprintId !== sprintId);
+        }
+
+        default: {
+            return taskSprintRelations;
         }
     }
 }

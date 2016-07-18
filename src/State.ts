@@ -22,7 +22,7 @@ export interface TimeTracking {
     taskId: number,
 
     begin: Date,
-    end: Date,
+    end: Date | null,
 }
 
 export interface Sprint {
