@@ -5,12 +5,12 @@ import { Task } from '../State';
 export interface CreateTaskAction {
     type: 'CreateTask',
     projectId: number,
-    parentId: number,
+    parentId: number | null,
     title: string,
     estimation: Date,
 }
 
-export function createTask(projectId: number, parentId: number, title: string, estimation: Date): CreateTaskAction {
+export function createTask(projectId: number, parentId: number | null, title: string, estimation: Date): CreateTaskAction {
     return { type: 'CreateTask', projectId, parentId, title, estimation };
 }
 

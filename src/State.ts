@@ -9,8 +9,8 @@ export interface Task {
     id: number,
     index: number,
 
-    parentId: number,
     projectId: number,
+    parentId: number | null,
 
     title: string,
     estimation: Date,

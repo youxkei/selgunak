@@ -68,7 +68,23 @@ export function tasks(tasks: Task[] = [], action: Action): Task[] {
         case 'DeleteTask': {
             const { taskId } = action;
 
-            return tasks.filter(task => task.id !== taskId);
+            let deletingIds = new Map<number, ''>();
+            deletingIds.set(taskId, '');
+
+            let isChanged = true;
+            while (isChanged) {
+                isChanged = false;
+
+                for (const task of tasks) {
+                    if (task.parentId !== null && deletingIds.has(task.parentId) && !deletingIds.has(task.id)) {
+                        isChanged = true;
+                        deletingIds.set(task.id, '');
+                    }
+                }
+            }
+
+
+            return tasks.filter(task => !deletingIds.has(task.id));
         }
 
         default: {
