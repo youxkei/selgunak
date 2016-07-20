@@ -4,17 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack",
+    "build:watch": "npm run build -- -w",
+    "test": "mocha-webpack --colors --webpack-config webpack.config-test.js \"src/**/*.test.ts\"",
+    "test:watch": "npm test -- --watch"
   },
   "author": "Hisayuki Mima",
   "license": "CC0-1.0",
   "devDependencies": {
+    "mocha": "^2.5.3",
+    "mocha-webpack": "^0.5.0",
+    "power-assert": "^1.4.1",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "ts-loader": "^0.8.2",
     "typescript": "^2.1.0-dev.20160718",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "webpack-espower-loader": "^1.0.1",
+    "webpack-node-externals": "^1.2.0"
   }
 }

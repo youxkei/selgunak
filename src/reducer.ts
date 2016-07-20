@@ -11,7 +11,7 @@ function calcId(array: { id: number }[]): number {
     }
 }
 
-function projects(projects: Project[] = [], action: Action): Project[] {
+export function projects(projects: Project[] = [], action: Action): Project[] {
     switch (action.type) {
         case 'CreateProject': {
             const { title } = action;
@@ -44,7 +44,7 @@ function projects(projects: Project[] = [], action: Action): Project[] {
     }
 }
 
-function tasks(tasks: Task[] = [], action: Action): Task[] {
+export function tasks(tasks: Task[] = [], action: Action): Task[] {
     switch (action.type) {
         case 'CreateTask': {
             const { projectId, parentId, title, estimation } = action;
@@ -77,7 +77,7 @@ function tasks(tasks: Task[] = [], action: Action): Task[] {
     }
 }
 
-function timeTrackings(timeTrackings: TimeTracking[], action: Action): TimeTracking[] {
+export function timeTrackings(timeTrackings: TimeTracking[], action: Action): TimeTracking[] {
     switch (action.type) {
         case 'StartTimeTracking': {
             const { taskId, begin } = action;
@@ -104,7 +104,7 @@ function timeTrackings(timeTrackings: TimeTracking[], action: Action): TimeTrack
     }
 }
 
-function sprints(sprints: Sprint[], action: Action): Sprint[] {
+export function sprints(sprints: Sprint[], action: Action): Sprint[] {
     switch (action.type) {
         case 'CreateSprint': {
             const { title, begin, end } = action;
@@ -137,7 +137,7 @@ function sprints(sprints: Sprint[], action: Action): Sprint[] {
     }
 }
 
-function taskSprintRelations(taskSprintRelations: TaskSprintRelation[], action: Action): TaskSprintRelation[] {
+export function taskSprintRelations(taskSprintRelations: TaskSprintRelation[], action: Action): TaskSprintRelation[] {
     switch (action.type) {
         case 'RegisterTaskToSprint': {
             const { taskId, sprintId } = action;
