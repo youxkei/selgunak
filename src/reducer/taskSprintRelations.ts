@@ -7,9 +7,14 @@ export function taskSprintRelations(taskSprintRelations: TaskSprintRelation[], a
     switch (action.type) {
         case 'RegisterTaskToSprint': {
             const { taskId, sprintId } = action;
-            const id = calcId(taskSprintRelations);
 
-            return [...taskSprintRelations, { id, taskId, sprintId }];
+            if (taskSprintRelations.some(rel => taskId === rel.taskId && sprintId === rel.sprintId)) {
+                return taskSprintRelations;
+            } else {
+                const id = calcId(taskSprintRelations);
+
+                return [...taskSprintRelations, { id, taskId, sprintId }];
+            }
         }
 
         case 'UnregisterTaskFromSprint': {
