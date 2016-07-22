@@ -1,5 +1,5 @@
-import Action from './Action.ts';
-import { Sprint, Task } from '../State';
+import Action from './action.ts';
+import { Sprint, Task } from '../state';
 
 
 export interface CreateSprintAction {

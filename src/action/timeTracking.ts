@@ -1,5 +1,5 @@
-import Action from './Action';
-import { Sprint, Task, TimeTracking } from '../State';
+import Action from './action';
+import { Sprint, Task, TimeTracking } from '../state';
 
 export interface StartTimeTrackingAction {
     type: 'StartTimeTracking',

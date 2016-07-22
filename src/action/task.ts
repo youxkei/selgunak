@@ -1,5 +1,5 @@
-import Action from './Action.ts';
-import { Task } from '../State';
+import Action from './action.ts';
+import { Task } from '../state';
 
 
 export interface CreateTaskAction {

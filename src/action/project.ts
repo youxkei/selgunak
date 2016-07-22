@@ -1,5 +1,5 @@
-import Action from './Action.ts';
-import { Project } from '../State';
+import Action from './action.ts';
+import { Project } from '../state';
 
 
 export interface CreateProjectAction {
