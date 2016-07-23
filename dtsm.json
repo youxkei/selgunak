@@ -30,6 +30,9 @@
     },
     "power-assert/power-assert.d.ts": {
       "ref": "5ccabc86eca6cfcda2b7ec83cca31dbd07c8a31b"
+    },
+    "material-ui/material-ui.d.ts": {
+      "ref": "c6c068935a58aa58087a309740bcf933600140b8"
     }
   }
 }
