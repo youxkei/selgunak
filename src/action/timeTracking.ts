@@ -1,6 +1,7 @@
 import Action from './action';
 import { Sprint, Task, TimeTracking } from '../state';
 
+
 export interface StartTimeTrackingAction {
     type: 'StartTimeTracking',
     taskId: number,

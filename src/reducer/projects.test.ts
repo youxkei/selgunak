@@ -2,6 +2,7 @@ import * as assert from 'power-assert';
 
 import projects from './projects';
 
+
 describe('projects reducer', function() {
     it('should reduce CreateProject action', function() {
         assert.deepEqual(

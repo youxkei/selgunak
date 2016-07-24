@@ -2,6 +2,7 @@ import Action from '../action/action';
 import { Project } from '../state';
 import { calcId } from './reducer';
 
+
 export function projects(projects: Project[] = [], action: Action): Project[] {
     switch (action.type) {
         case 'CreateProject': {
