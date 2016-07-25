@@ -9,6 +9,7 @@ import { TaskProps } from '../component/task';
 
 function makeTaskProps(tasks: Task[], task: Task): TaskProps {
     return {
+        id: task.id,
         title: task.title,
         estimation: task.estimation,
         children: tasks
@@ -25,7 +26,7 @@ interface ProjectsProps {
 function Projects({ projectPropsList }: ProjectsProps) {
     return (
         <div>
-            { projectPropsList.map(projectProps => (<Project {...projectProps} />)) }
+            { projectPropsList.map(projectProps => (<Project key={projectProps.id} {...projectProps} />)) }
         </div>
     );
 }
@@ -33,9 +34,10 @@ function Projects({ projectPropsList }: ProjectsProps) {
 function mapStateToProps({ projects, tasks }: State, ownProps: {}) {
     return {
         projectPropsList: projects.map(project => ({
+            id: project.id,
             title: project.title,
             tasks: tasks
-                .filter(task => task.projectId === project.id)
+                .filter(task => task.parentId === null && task.projectId === project.id)
                 .map(task => makeTaskProps(tasks, task)),
         })),
     };

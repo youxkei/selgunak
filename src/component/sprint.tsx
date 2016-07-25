@@ -5,6 +5,7 @@ import TaskInSprint, { TaskInSprintProps } from './taskInSprint';
 
 
 export interface SprintProps {
+    id: number,
     title: string,
     begin: Date,
     end: Date,
@@ -19,7 +20,7 @@ export function Sprint({ title, begin, end, tasks }: SprintProps) {
                 subtitle={`${begin.toLocaleDateString()} 〜 ${end.toLocaleDateString()}`}
             />
             <CardMedia>
-                { tasks.map(taskInSprintProps => <TaskInSprint {...taskInSprintProps} />) }
+                { tasks.map(taskInSprintProps => <TaskInSprint key={taskInSprintProps.id} {...taskInSprintProps} />) }
             </CardMedia>
         </Card>
     );

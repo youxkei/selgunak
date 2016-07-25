@@ -3,6 +3,7 @@ import { Card, CardHeader, CardMedia } from 'material-ui/Card';
 
 
 export interface TaskProps {
+    id: number,
     title: string,
     estimation: Date,
     children: TaskProps[],
@@ -13,7 +14,7 @@ export function Task({ title, estimation, children }: TaskProps): React.ReactEle
         <Card>
             <CardHeader title={title} />
             <CardMedia>
-                { children.map(props => <Task {...props} />) }
+                { children.map(taskProps => <Task key={taskProps.id} {...taskProps} />) }
             </CardMedia>
         </Card>
     );

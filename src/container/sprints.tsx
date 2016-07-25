@@ -13,7 +13,7 @@ interface SprintsProps {
 function Sprints({ sprintPropsList }: SprintsProps) {
     return (
         <div>
-            { sprintPropsList.map(sprintProps => (<Sprint {...sprintProps} />)) }
+            { sprintPropsList.map(sprintProps => (<Sprint key={sprintProps.id} {...sprintProps} />)) }
         </div>
     );
 }
@@ -21,13 +21,17 @@ function Sprints({ sprintPropsList }: SprintsProps) {
 function mapStateToProps({ sprints, tasks, taskSprintRelations }: State, ownProps: {}) {
     return {
         sprintPropsList: sprints.map(sprint => ({
+            id: sprint.id,
             title: sprint.title,
             begin: sprint.begin,
             end: sprint.end,
             tasks: taskSprintRelations
                 .filter(taskSprintRelation => taskSprintRelation.sprintId === sprint.id)
                 .map(taskSprintRelation => tasks.find(task => task.id === taskSprintRelation.taskId))
-                .map(task => ({ title: task !== undefined ? task.title : 'error' })),
+                .map(task => ({
+                    id: task !== undefined ? task.id : 'error',
+                    title: task !== undefined ? task.title : 'error',
+                })),
         })),
     };
 }

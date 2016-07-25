@@ -3,6 +3,7 @@ import { Card, CardHeader } from 'material-ui/Card';
 
 
 export interface TaskInSprintProps {
+    id: number,
     title: string,
 }
 
