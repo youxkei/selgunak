@@ -1,3 +1,5 @@
+import { Dispatch as ReduxDispatch } from 'redux';
+
 import { CreateProjectAction, UpdateProjectAction, DeleteProjectAction } from './project';
 import { CreateTaskAction, UpdateTaskAction, DeleteTaskAction } from './task';
 import { CreateSprintAction, UpdateSprintAction, DeleteSprintAction, RegisterTaskToSprintAction, UnregisterTaskFromSprintAction } from './sprint';
@@ -10,5 +12,9 @@ export type Action
     | CreateSprintAction | UpdateSprintAction | DeleteSprintAction | RegisterTaskToSprintAction | UnregisterTaskFromSprintAction
     | StartTimeTrackingAction | StopTimeTrackingAction
 ;
+
+export interface Dispatch extends ReduxDispatch<any> {
+    (action: Action): Action,
+}
 
 export default Action;
