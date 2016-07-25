@@ -3,7 +3,7 @@ import { Sprint } from '../state';
 import { calcId } from './reducer';
 
 
-export function sprints(sprints: Sprint[], action: Action): Sprint[] {
+export function sprints(sprints: Sprint[] = [], action: Action): Sprint[] {
     switch (action.type) {
         case 'CreateSprint': {
             const { title, begin, end } = action;

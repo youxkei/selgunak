@@ -3,7 +3,7 @@ import { TaskSprintRelation } from '../state';
 import { calcId } from './reducer';
 
 
-export function taskSprintRelations(taskSprintRelations: TaskSprintRelation[], action: Action): TaskSprintRelation[] {
+export function taskSprintRelations(taskSprintRelations: TaskSprintRelation[] = [], action: Action): TaskSprintRelation[] {
     switch (action.type) {
         case 'RegisterTaskToSprint': {
             const { taskId, sprintId } = action;

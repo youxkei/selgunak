@@ -3,7 +3,7 @@ import { TimeTracking } from '../state';
 import { calcId } from './reducer';
 
 
-export function timeTrackings(timeTrackings: TimeTracking[], action: Action): TimeTracking[] {
+export function timeTrackings(timeTrackings: TimeTracking[] = [], action: Action): TimeTracking[] {
     switch (action.type) {
         case 'StartTimeTracking': {
             const { taskId, begin } = action;
