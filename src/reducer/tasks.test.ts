@@ -1,6 +1,6 @@
 import * as assert from 'power-assert';
 
-import { tasks } from './tasks';
+import tasks from './tasks';
 
 
 describe('tasks reducer', function() {

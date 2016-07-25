@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card, CardHeader, CardMedia } from 'material-ui/Card';
 
-import { Task, TaskProps } from './task';
+import Task, { TaskProps } from './task';
 
 
 export interface ProjectProps {
@@ -9,7 +9,7 @@ export interface ProjectProps {
     tasks: TaskProps[],
 }
 
-export function Project({ title, tasks }: ProjectProps): React.ReactElement<any> {
+export function Project({ title, tasks }: ProjectProps)  {
     return (
         <Card>
             <CardHeader title={title} />

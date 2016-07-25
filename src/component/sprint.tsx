@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card, CardHeader, CardMedia } from 'material-ui/Card';
 
-import { TaskInSprint, TaskInSprintProps } from './taskInSprint';
+import TaskInSprint, { TaskInSprintProps } from './taskInSprint';
 
 
 export interface SprintProps {
@@ -11,7 +11,7 @@ export interface SprintProps {
     tasks: TaskInSprintProps[],
 }
 
-export function Sprint({ title, begin, end, tasks }: SprintProps): React.ReactElement<any> {
+export function Sprint({ title, begin, end, tasks }: SprintProps) {
     return (
         <Card>
             <CardHeader

@@ -6,7 +6,7 @@ export interface TaskInSprintProps {
     title: string,
 }
 
-export function TaskInSprint({ title }: TaskInSprintProps): React.ReactElement<any> {
+export function TaskInSprint({ title }: TaskInSprintProps) {
     return (
         <Card>
             <CardHeader title={title} />
