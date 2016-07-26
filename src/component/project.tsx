@@ -7,15 +7,15 @@ import Task, { TaskProps } from './task';
 export interface ProjectProps {
     id: number,
     title: string,
-    tasks: TaskProps[],
+    taskPropsList: TaskProps[],
 }
 
-export function Project({ title, tasks }: ProjectProps)  {
+export function Project({ title, taskPropsList }: ProjectProps)  {
     return (
         <Card>
             <CardHeader title={title} />
             <CardMedia>
-                { tasks.map(taskProps => <Task key={taskProps.id} {...taskProps} />) }
+                { taskPropsList.map(taskProps => <Task key={taskProps.id} {...taskProps} />) }
             </CardMedia>
         </Card>
     );

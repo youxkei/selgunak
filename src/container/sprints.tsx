@@ -25,7 +25,7 @@ function mapStateToProps({ sprints, tasks, taskSprintRelations }: State, ownProp
             title: sprint.title,
             begin: sprint.begin,
             end: sprint.end,
-            tasks: taskSprintRelations
+            taskInSprintPropsList: taskSprintRelations
                 .filter(taskSprintRelation => taskSprintRelation.sprintId === sprint.id)
                 .map(taskSprintRelation => tasks.find(task => task.id === taskSprintRelation.taskId))
                 .map(task => ({

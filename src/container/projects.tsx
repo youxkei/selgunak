@@ -12,7 +12,7 @@ function makeTaskProps(tasks: Task[], task: Task): TaskProps {
         id: task.id,
         title: task.title,
         estimation: task.estimation,
-        children: tasks
+        childrenTaskPropsList: tasks
             .filter(child => child.parentId === task.id)
             .map(child => makeTaskProps(tasks, child)),
     }
@@ -36,7 +36,7 @@ function mapStateToProps({ projects, tasks }: State, ownProps: {}) {
         projectPropsList: projects.map(project => ({
             id: project.id,
             title: project.title,
-            tasks: tasks
+            taskPropsList: tasks
                 .filter(task => task.parentId === null && task.projectId === project.id)
                 .map(task => makeTaskProps(tasks, task)),
         })),

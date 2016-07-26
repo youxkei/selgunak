@@ -6,15 +6,15 @@ export interface TaskProps {
     id: number,
     title: string,
     estimation: Date,
-    children: TaskProps[],
+    childrenTaskPropsList: TaskProps[],
 }
 
-export function Task({ title, estimation, children }: TaskProps): React.ReactElement<any> {
+export function Task({ title, estimation, childrenTaskPropsList }: TaskProps): React.ReactElement<any> {
     return (
         <Card>
             <CardHeader title={title} />
             <CardMedia>
-                { children.map(taskProps => <Task key={taskProps.id} {...taskProps} />) }
+                { childrenTaskPropsList.map(taskProps => <Task key={taskProps.id} {...taskProps} />) }
             </CardMedia>
         </Card>
     );

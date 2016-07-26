@@ -9,10 +9,10 @@ export interface SprintProps {
     title: string,
     begin: Date,
     end: Date,
-    tasks: TaskInSprintProps[],
+    taskInSprintPropsList: TaskInSprintProps[],
 }
 
-export function Sprint({ title, begin, end, tasks }: SprintProps) {
+export function Sprint({ title, begin, end, taskInSprintPropsList }: SprintProps) {
     return (
         <Card>
             <CardHeader
@@ -20,7 +20,7 @@ export function Sprint({ title, begin, end, tasks }: SprintProps) {
                 subtitle={`${begin.toLocaleDateString()} 〜 ${end.toLocaleDateString()}`}
             />
             <CardMedia>
-                { tasks.map(taskInSprintProps => <TaskInSprint key={taskInSprintProps.id} {...taskInSprintProps} />) }
+                { taskInSprintPropsList.map(taskInSprintProps => <TaskInSprint key={taskInSprintProps.id} {...taskInSprintProps} />) }
             </CardMedia>
         </Card>
     );
