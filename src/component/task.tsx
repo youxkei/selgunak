@@ -13,9 +13,13 @@ export function Task({ title, estimation, childrenTaskPropsList }: TaskProps): R
     return (
         <Card>
             <CardHeader title={title} />
-            <CardMedia>
-                { childrenTaskPropsList.map(taskProps => <Task key={taskProps.id} {...taskProps} />) }
-            </CardMedia>
+            {
+                childrenTaskPropsList.length === 0 ? null : (
+                    <CardMedia style={{ padding: '0px 10px 10px', boxSizing: 'border-box' }}>
+                        { childrenTaskPropsList.map(taskProps => <Task key={taskProps.id} {...taskProps} />) }
+                    </CardMedia>
+                )
+            }
         </Card>
     );
 }

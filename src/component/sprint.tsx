@@ -19,9 +19,13 @@ export function Sprint({ title, begin, end, taskInSprintPropsList }: SprintProps
                 title={title}
                 subtitle={`${begin.toLocaleDateString()} 〜 ${end.toLocaleDateString()}`}
             />
-            <CardMedia>
-                { taskInSprintPropsList.map(taskInSprintProps => <TaskInSprint key={taskInSprintProps.id} {...taskInSprintProps} />) }
-            </CardMedia>
+            {
+                taskInSprintPropsList.length === 0 ? null : (
+                    <CardMedia style={{ padding: '0px 10px 10px', boxSizing: 'border-box' }}>
+                        { taskInSprintPropsList.map(taskInSprintProps => <TaskInSprint key={taskInSprintProps.id} {...taskInSprintProps} />) }
+                    </CardMedia>
+                )
+            }
         </Card>
     );
 }

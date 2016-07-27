@@ -14,9 +14,13 @@ export function Project({ title, taskPropsList }: ProjectProps)  {
     return (
         <Card>
             <CardHeader title={title} />
-            <CardMedia>
-                { taskPropsList.map(taskProps => <Task key={taskProps.id} {...taskProps} />) }
-            </CardMedia>
+            {
+                taskPropsList.length === 0 ? null : (
+                    <CardMedia style={{ padding: '0px 10px 10px', boxSizing: 'border-box' }}>
+                        { taskPropsList.map(taskProps => <Task key={taskProps.id} {...taskProps} />) }
+                    </CardMedia>
+                )
+            }
         </Card>
     );
 }
