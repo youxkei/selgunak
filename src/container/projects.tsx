@@ -25,7 +25,7 @@ interface ProjectsProps {
 
 function Projects({ projectPropsList }: ProjectsProps) {
     return (
-        <div>
+        <div style={{ paddingTop: 10 }}>
             { projectPropsList.map(projectProps => (<Project key={projectProps.id} {...projectProps} />)) }
         </div>
     );
