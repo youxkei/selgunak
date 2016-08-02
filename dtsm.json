@@ -33,6 +33,9 @@
     },
     "material-ui/material-ui.d.ts": {
       "ref": "c6c068935a58aa58087a309740bcf933600140b8"
+    },
+    "react-tap-event-plugin/react-tap-event-plugin.d.ts": {
+      "ref": "cd94d1e2dd95797ebfbdab1d0e8e4a419d5cfc92"
     }
   }
 }

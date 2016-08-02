@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { Dispatch } from '../action/action';
+import { createTask } from '../action/task';
 import State, { Task } from '../state';
 import Project, { ProjectProps } from '../component/project';
 import { TaskProps } from '../component/task';
@@ -21,12 +22,19 @@ function makeTaskProps(tasks: Task[], task: Task): TaskProps {
 
 interface ProjectsProps {
     projectPropsList: ProjectProps[],
+    createTask: (projectId: number, parentId: number | null, title: string, estimation: Date) => void,
 }
 
-function Projects({ projectPropsList }: ProjectsProps) {
+function Projects({ projectPropsList, createTask }: ProjectsProps) {
     return (
         <div style={{ paddingTop: 10 }}>
-            { projectPropsList.map(projectProps => (<Project key={projectProps.id} {...projectProps} />)) }
+            { projectPropsList.map(projectProps => (
+                <Project
+                    key={projectProps.id}
+                    createTask={createTask}
+                    {...projectProps}
+                />
+            ))}
         </div>
     );
 }
@@ -43,8 +51,10 @@ function mapStateToProps({ projects, tasks }: State, ownProps: {}) {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch, ownProps: {}) {
-    return {};
+function mapDispatchToProps(dispatch: Dispatch, ownProps: {}): { createTask: (projectId: number, parentId: number | null, title: string, estimation: Date) => void } {
+    return {
+        createTask: (projectId: number, parentId: number | null, title: string, estimation: Date) => dispatch(createTask(projectId, parentId, title, estimation)),
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Projects);

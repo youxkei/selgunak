@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { render } from 'react-dom';
+import * as injectTapEventPlugin from 'react-tap-event-plugin';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -15,12 +16,9 @@ import Sprints from './container/sprints';
 const store = createStore(reducer);
 const rootElement = document.getElementById('root');
 
-store.dispatch({
-    type: 'CreateProject',
-    title: 'ぷろじぇくと',
-});
-
 if (rootElement !== null) {
+    injectTapEventPlugin();
+
     render((
         <Provider store={store}>
             <MuiThemeProvider>
@@ -35,30 +33,6 @@ if (rootElement !== null) {
 
 
 store.dispatch({
-    type: 'CreateTask',
-    projectId: 0,
-    parentId: null,
-    title: 'たすく1',
-    estimation: new Date(),
-});
-
-store.dispatch({
-    type: 'CreateTask',
-    projectId: 0,
-    parentId: 0,
-    title: 'たすく2',
-    estimation: new Date(),
-});
-
-store.dispatch({
-    type: 'CreateSprint',
-    title: 'すぷりんと',
-    begin: new Date(2016, 7, 25),
-    end: new Date(2016, 8, 31),
-});
-
-store.dispatch({
-    type: 'RegisterTaskToSprint',
-    sprintId: 0,
-    taskId: 1,
+    type: 'CreateProject',
+    title: 'ぷろじぇくと',
 });
