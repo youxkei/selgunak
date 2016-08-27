@@ -12,6 +12,9 @@ export interface SprintProps {
     taskInSprintPropsList: TaskInSprintProps[],
 }
 
+export interface SprintComponentProps extends SprintProps {
+}
+
 export function Sprint({ title, begin, end, taskInSprintPropsList }: SprintProps) {
     return (
         <Card>
@@ -21,7 +24,7 @@ export function Sprint({ title, begin, end, taskInSprintPropsList }: SprintProps
             />
             {
                 taskInSprintPropsList.length === 0 ? null : (
-                    <CardMedia style={{ padding: '0px 10px 10px', boxSizing: 'border-box' }}>
+                    <CardMedia style={{ padding: '0px 8px 8px', boxSizing: 'border-box' }}>
                         { taskInSprintPropsList.map(taskInSprintProps => <TaskInSprint key={taskInSprintProps.id} {...taskInSprintProps} />) }
                     </CardMedia>
                 )

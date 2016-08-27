@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Dispatch } from '../action/action';
 import State from '../state';
-import Sprint, { SprintProps } from '../component/sprint';
+import Sprint, { SprintProps } from './sprint';
 
 
 interface SprintsProps {

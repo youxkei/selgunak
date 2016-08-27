@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
 
 import { Dispatch } from '../action/action';
-import { createTask } from '../action/task';
+import { createProject } from '../action/project';
 import State, { Task } from '../state';
-import Project, { ProjectProps } from '../component/project';
-import { TaskProps } from '../component/task';
+import Project, { ProjectProps } from './project';
+import { TaskProps } from '../container/task';
 
 
 function makeTaskProps(tasks: Task[], task: Task): TaskProps {
     return {
         id: task.id,
+        projectId: task.projectId,
         title: task.title,
         estimation: task.estimation,
         childrenTaskPropsList: tasks
@@ -22,19 +25,30 @@ function makeTaskProps(tasks: Task[], task: Task): TaskProps {
 
 interface ProjectsProps {
     projectPropsList: ProjectProps[],
-    createTask: (projectId: number, parentId: number | null, title: string, estimation: Date) => void,
+    createProject: (title: string) => void,
 }
 
-function Projects({ projectPropsList, createTask }: ProjectsProps) {
+function Projects({ projectPropsList, createProject }: ProjectsProps) {
+    let titleField: TextField;
+
     return (
-        <div style={{ paddingTop: 10 }}>
-            { projectPropsList.map(projectProps => (
-                <Project
-                    key={projectProps.id}
-                    createTask={createTask}
-                    {...projectProps}
-                />
-            ))}
+        <div>
+            <div style={{ paddingTop: 10 }}>
+                { projectPropsList.map(projectProps => (
+                    <Project
+                        key={projectProps.id}
+                        {...projectProps}
+                    />
+                ))}
+            </div>
+            <TextField
+                ref={(textField: TextField) => { titleField = textField; }}
+                hintText="タイトル"
+            />
+            <FlatButton
+                label="作る"
+                onTouchTap={() => createProject(titleField.getValue())}
+            />
         </div>
     );
 }
@@ -51,9 +65,9 @@ function mapStateToProps({ projects, tasks }: State, ownProps: {}) {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch, ownProps: {}): { createTask: (projectId: number, parentId: number | null, title: string, estimation: Date) => void } {
+function mapDispatchToProps(dispatch: Dispatch, ownProps: {}): { createProject: (title: string) => void } {
     return {
-        createTask: (projectId: number, parentId: number | null, title: string, estimation: Date) => dispatch(createTask(projectId, parentId, title, estimation)),
+        createProject: title => dispatch(createProject(title)),
     };
 }
 
