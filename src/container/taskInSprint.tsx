@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, CardHeader } from 'material-ui/Card';
+import { Panel } from 'react-bootstrap';
 
 
 export interface TaskInSprintProps {
@@ -9,9 +9,8 @@ export interface TaskInSprintProps {
 
 export function TaskInSprint({ title }: TaskInSprintProps) {
     return (
-        <Card>
-            <CardHeader title={title} />
-        </Card>
+        <Panel header={title}>
+        </Panel>
     );
 }
 

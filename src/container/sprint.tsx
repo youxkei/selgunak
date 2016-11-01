@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, CardHeader, CardMedia } from 'material-ui/Card';
+import { Panel } from 'react-bootstrap';
 
 import TaskInSprint, { TaskInSprintProps } from './taskInSprint';
 
@@ -17,19 +17,15 @@ export interface SprintComponentProps extends SprintProps {
 
 export function Sprint({ title, begin, end, taskInSprintPropsList }: SprintProps) {
     return (
-        <Card>
-            <CardHeader
-                title={title}
-                subtitle={`${begin.toLocaleDateString()} 〜 ${end.toLocaleDateString()}`}
-            />
+        <Panel header={`${title} ${begin.toLocaleDateString()} 〜 ${end.toLocaleDateString()}`}>
             {
                 taskInSprintPropsList.length === 0 ? null : (
-                    <CardMedia style={{ padding: '0px 8px 8px', boxSizing: 'border-box' }}>
+                    <div style={{ padding: '0px 8px 8px', boxSizing: 'border-box' }}>
                         { taskInSprintPropsList.map(taskInSprintProps => <TaskInSprint key={taskInSprintProps.id} {...taskInSprintProps} />) }
-                    </CardMedia>
+                    </div>
                 )
             }
-        </Card>
+        </Panel>
     );
 }
 

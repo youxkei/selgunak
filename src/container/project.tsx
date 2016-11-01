@@ -1,8 +1,7 @@
 import * as React from 'react';
+import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
-import Card, { CardHeader, CardText, CardActions } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
+import { Panel, Form, FormControl, Button } from 'react-bootstrap';
 
 import State from '../state';
 import { Dispatch } from '../action/action';
@@ -24,14 +23,13 @@ export interface ProjectComponentProps extends ProjectProps {
 }
 
 export function ProjectComponent({ id, title, taskPropsList, createTask, updateProject, deleteProject }: ProjectComponentProps)  {
-    let taskTitleField: TextField;
-    let taskEstimationField: TextField;
-    let projectTitleField: TextField;
+    let taskTitleField: HTMLInputElement;
+    let taskEstimationField: HTMLInputElement;
+    let projectTitleField: HTMLInputElement;
 
     return (
-        <Card>
-            <CardHeader title={title} />
-            <CardText style={{ padding: '0px 8px 8px', boxSizing: 'border-box' }}>
+        <Panel header={title}>
+            <div>
                 { taskPropsList.map(taskProps => (
                     <Task
                         key={taskProps.id}
@@ -39,33 +37,29 @@ export function ProjectComponent({ id, title, taskPropsList, createTask, updateP
                         {...taskProps}
                     />
                 ))}
-                <TextField
-                    ref={(textField: TextField) => { taskTitleField = textField; }}
-                    hintText="タイトル"
+                <Form inline>
+                    <FormControl
+                        ref={(formControl: FormControl) => { taskTitleField = findDOMNode(formControl) as HTMLInputElement; }}
+                        placeholder="タイトル"
+                    />
+                    <FormControl
+                        ref={(formControl: FormControl) => { taskEstimationField = findDOMNode(formControl) as HTMLInputElement; }}
+                        placeholder="見積もり"
+                    />
+                    <Button onTouchTap={() => createTask(id, taskTitleField.value, new Date(0, 0, 0, 0, parseInt(taskEstimationField.value, 10)))}>
+                        作成
+                    </Button>
+                </Form>
+            </div>
+            <Form inline>
+                <FormControl
+                    ref={(formControl: FormControl) => { projectTitleField = findDOMNode(formControl) as HTMLInputElement; }}
+                    placeholder="プロジェクト名"
                 />
-                <TextField
-                    ref={(textField: TextField) => { taskEstimationField = textField; }}
-                    hintText="見積もり"
-                />
-                <FlatButton
-                    label="作成"
-                    onTouchTap={() => createTask(id, taskTitleField.getValue(), new Date(0, 0, 0, 0, parseInt(taskEstimationField.getValue(), 10)))}
-                />
-            </CardText>
-            <CardActions>
-                <TextField
-                    ref={(textField: TextField) => { projectTitleField = textField; }}
-                />
-                <FlatButton
-                    label="更新"
-                    onTouchTap={() => updateProject(id, projectTitleField.getValue())}
-                />
-                <FlatButton
-                    label="削除"
-                    onTouchTap={() => deleteProject(id)}
-                />
-            </CardActions>
-        </Card>
+                <Button onTouchTap={() => updateProject(id, projectTitleField.value)}>更新</Button>
+                <Button onTouchTap={() => deleteProject(id)}>削除</Button>
+            </Form>
+        </Panel>
     );
 }
 

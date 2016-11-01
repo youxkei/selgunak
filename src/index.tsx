@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import * as injectTapEventPlugin from 'react-tap-event-plugin';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import State from './state';
 import Action from './action/action';
@@ -21,12 +20,10 @@ if (rootElement !== null) {
 
     render((
         <Provider store={store}>
-            <MuiThemeProvider>
-                <div>
-                    <Sprints />
-                    <Projects />
-                </div>
-            </MuiThemeProvider>
+            <div>
+                <Sprints />
+                <Projects />
+            </div>
         </Provider>
     ), rootElement);
 }
@@ -35,4 +32,11 @@ if (rootElement !== null) {
 store.dispatch({
     type: 'CreateProject',
     title: 'ぷろじぇくと',
+});
+
+store.dispatch({
+    type: 'CreateSprint',
+    title: 'すぷりんと',
+    begin: new Date(),
+    end: new Date(),
 });

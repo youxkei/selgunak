@@ -1,8 +1,7 @@
 import * as React from 'react';
+import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
-import Card, {CardHeader, CardText, CardActions } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
+import { Button, Form, FormControl, Panel } from 'react-bootstrap';
 
 import { Dispatch } from '../action/action';
 import { createTask, updateTask, deleteTask } from '../action/task';
@@ -24,53 +23,51 @@ export interface TaskComponentProps extends TaskProps {
 }
 
 export function TaskComponent({ id, projectId, title, estimation, childrenTaskPropsList, createTask, updateTask, deleteTask }: TaskComponentProps): React.ReactElement<any> /* avoiding implicit any with recursion */ {
-    let newTaskTitleField: TextField;
-    let newTaskEstimationField: TextField;
-    let newTitleField: TextField;
-    let newEstimationField: TextField;
+    let newTaskTitleField: HTMLInputElement;
+    let newTaskEstimationField: HTMLInputElement;
+    let newTitleField: HTMLInputElement;
+    let newEstimationField: HTMLInputElement;
 
     return (
-        <Card>
-            <CardHeader title={title} />
-            <CardText style={{ padding: '0px 8px', boxSizing: 'border-box' }}>
+        <Panel header={title}>
+            <div style={{ padding: '0px 8px', boxSizing: 'border-box' }}>
                 { childrenTaskPropsList.map(taskProps => (
                     <Task
                         key={taskProps.id}
                         {...taskProps}
                     />
                 ))}
-                <TextField
-                    ref={(textField: TextField) => { newTaskTitleField = textField; }}
-                    hintText="タイトル"
+                <Form inline>
+                    <FormControl
+                        ref={(formControl: FormControl) => { newTaskTitleField = findDOMNode(formControl) as HTMLInputElement; }}
+                        placeholder="タイトル"
+                    />
+                    <FormControl
+                        ref={(formControl: FormControl) => { newTaskEstimationField = findDOMNode(formControl) as HTMLInputElement; }}
+                        placeholder="見積もり"
+                    />
+                    <Button onTouchTap={() => createTask(projectId, id, newTaskTitleField.value, new Date(0, 0, 0, 0, parseInt(newTaskEstimationField.value, 10)))}>
+                        作る
+                    </Button>
+                </Form>
+            </div>
+            <Form inline>
+                <FormControl
+                    ref={(formControl: FormControl) => { newTitleField = findDOMNode(formControl) as HTMLInputElement; }}
+                    placeholder="タイトル"
                 />
-                <TextField
-                    ref={(textField: TextField) => { newTaskEstimationField = textField; }}
-                    hintText="見積もり"
+                <FormControl
+                    ref={(formControl: FormControl) => { newEstimationField = findDOMNode(formControl) as HTMLInputElement; }}
+                    placeholder="見積もり"
                 />
-                <FlatButton
-                    label="作る"
-                    onTouchTap={() => createTask(projectId, id, newTaskTitleField.getValue(), new Date(0, 0, 0, 0, parseInt(newTaskEstimationField.getValue(), 10)))}
-                />
-            </CardText>
-            <CardActions>
-                <TextField
-                    ref={(textField: TextField) => { newTitleField = textField; }}
-                    hintText="タイトル"
-                />
-                <TextField
-                    ref={(textField: TextField) => { newEstimationField = textField; }}
-                    hintText="見積もり"
-                />
-                <FlatButton
-                    label="更新"
-                    onTouchTap={() => updateTask(id, newTitleField.getValue(), new Date(0, 0, 0, 0, parseInt(newEstimationField.getValue(), 10)))}
-                />
-                <FlatButton
-                    label="削除"
-                    onTouchTap={() => deleteTask(id)}
-                />
-            </CardActions>
-        </Card>
+                <Button onTouchTap={() => updateTask(id, newTitleField.value, new Date(0, 0, 0, 0, parseInt(newEstimationField.value, 10)))}>
+                    更新
+                </Button>
+                <Button onTouchTap={() => deleteTask(id)}>
+                    削除
+                </Button>
+            </Form>
+        </Panel>
     );
 }
 
