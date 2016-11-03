@@ -1,18 +1,18 @@
-import Action from '../action/action';
+import Action, { ActionType } from '../action/action';
 import { Task } from '../state';
 import { calcId } from './reducer';
 
 
 export function tasks(tasks: Task[] = [], action: Action): Task[] {
     switch (action.type) {
-        case 'CreateTask': {
+        case ActionType.CreateTask: {
             const { projectId, parentId, title, estimation } = action;
             const id = calcId(tasks);
 
             return [...tasks, { id, index: id, projectId, parentId, title, estimation }];
         }
 
-        case 'UpdateTask': {
+        case ActionType.UpdateTask: {
             const { taskId, title, estimation } = action;
 
             return tasks.map(task => {
@@ -24,7 +24,7 @@ export function tasks(tasks: Task[] = [], action: Action): Task[] {
             });
         }
 
-        case 'DeleteTask': {
+        case ActionType.DeleteTask: {
             const { taskId } = action;
 
             let deletingIds = new Map<number, ''>();

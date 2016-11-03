@@ -5,7 +5,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import State from './state';
-import Action from './action/action';
+import Action, { ActionType } from './action/action';
 import reducer from './reducer/reducer';
 
 import Projects from './container/projects';
@@ -30,12 +30,12 @@ if (rootElement !== null) {
 
 
 store.dispatch({
-    type: 'CreateProject',
+    type: ActionType.CreateProject,
     title: 'ぷろじぇくと',
 });
 
 store.dispatch({
-    type: 'CreateSprint',
+    type: ActionType.CreateSprint,
     title: 'すぷりんと',
     begin: new Date(),
     end: new Date(),

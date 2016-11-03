@@ -1,16 +1,27 @@
 import { Dispatch as ReduxDispatch } from 'redux';
 
-import { CreateProjectAction, UpdateProjectAction, DeleteProjectAction } from './project';
-import { CreateTaskAction, UpdateTaskAction, DeleteTaskAction } from './task';
-import { CreateSprintAction, UpdateSprintAction, DeleteSprintAction, RegisterTaskToSprintAction, UnregisterTaskFromSprintAction } from './sprint';
-import { StartTimeTrackingAction, StopTimeTrackingAction } from './timeTracking';
 
+export const enum ActionType {
+    CreateProject, UpdateProject, DeleteProject,
+    CreateTask, UpdateTask, DeleteTask,
+    CreateSprint, UpdateSprint, DeleteSprint, RegisterTaskToSprint, UnregisterTaskFromSprint,
+    StartTimeTracking, StopTimeTracking,
+}
 
 export type Action
-    = CreateProjectAction | UpdateProjectAction | DeleteProjectAction
-    | CreateTaskAction | UpdateTaskAction | DeleteTaskAction
-    | CreateSprintAction | UpdateSprintAction | DeleteSprintAction | RegisterTaskToSprintAction | UnregisterTaskFromSprintAction
-    | StartTimeTrackingAction | StopTimeTrackingAction
+    = { type: ActionType.CreateProject, title: string }
+    | { type: ActionType.UpdateProject, projectId: number, title: string }
+    | { type: ActionType.DeleteProject, projectId: number }
+    | { type: ActionType.CreateTask, projectId: number, parentId: number | null, title: string, estimation: Date }
+    | { type: ActionType.UpdateTask, taskId: number, title: string, estimation: Date }
+    | { type: ActionType.DeleteTask, taskId: number }
+    | { type: ActionType.CreateSprint, title: string, begin: Date, end: Date }
+    | { type: ActionType.UpdateSprint, sprintId: number, title: string, begin: Date, end: Date }
+    | { type: ActionType.DeleteSprint, sprintId: number }
+    | { type: ActionType.RegisterTaskToSprint, sprintId: number, taskId: number }
+    | { type: ActionType.UnregisterTaskFromSprint, sprintId: number, taskId: number }
+    | { type: ActionType.StartTimeTracking, taskId: number, begin: Date }
+    | { type: ActionType.StopTimeTracking, timeTrackingId: number, end: Date }
 ;
 
 export interface Dispatch extends ReduxDispatch<any> {

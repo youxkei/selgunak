@@ -1,5 +1,6 @@
 import * as assert from 'power-assert';
 
+import { ActionType } from '../action/action';
 import sprints from './sprints';
 
 
@@ -8,7 +9,7 @@ describe('sprints reducer', function() {
         assert.deepEqual(
             sprints(
                 [],
-                { type: 'CreateSprint', title: 'lo broda', begin: new Date(141), end: new Date(173) }
+                { type: ActionType.CreateSprint, title: 'lo broda', begin: new Date(141), end: new Date(173) }
             ),
             [
                 { id: 0, index: 0, title: 'lo broda', begin: new Date(141), end: new Date(173) },
@@ -20,7 +21,7 @@ describe('sprints reducer', function() {
                 [
                     { id: 0, index: 0, title: 'lo broda', begin: new Date(141), end: new Date(173) }
                 ],
-                { type: 'CreateSprint', title: 'lo brode', begin: new Date(271), end: new Date(314) }
+                { type: ActionType.CreateSprint, title: 'lo brode', begin: new Date(271), end: new Date(314) }
             ),
             [
                 { id: 0, index: 0, title: 'lo broda', begin: new Date(141), end: new Date(173) },
@@ -33,7 +34,7 @@ describe('sprints reducer', function() {
         assert.deepEqual(
             sprints(
                 [],
-                { type: 'UpdateSprint', sprintId: 3141592, title: 'lo broda', begin: new Date(141), end: new Date(173) }
+                { type: ActionType.UpdateSprint, sprintId: 3141592, title: 'lo broda', begin: new Date(141), end: new Date(173) }
             ),
             []
         );
@@ -43,7 +44,7 @@ describe('sprints reducer', function() {
                 [
                     { id: 0, index: 0, title: 'lo broda', begin: new Date(141), end: new Date(173) },
                 ],
-                { type: 'UpdateSprint', sprintId: 3141592, title: 'lo brode', begin: new Date(271), end: new Date(314) }
+                { type: ActionType.UpdateSprint, sprintId: 3141592, title: 'lo brode', begin: new Date(271), end: new Date(314) }
             ),
             [
                 { id: 0, index: 0, title: 'lo broda', begin: new Date(141), end: new Date(173) },
@@ -56,7 +57,7 @@ describe('sprints reducer', function() {
                     { id: 0, index: 1, title: 'lo broda', begin: new Date(141), end: new Date(173) },
                     { id: 1, index: 0, title: 'lo brode', begin: new Date(271), end: new Date(314) },
                 ],
-                { type: 'UpdateSprint', sprintId: 1, title: 'lo brodi', begin: new Date(0xB), end: new Date(0xD) }
+                { type: ActionType.UpdateSprint, sprintId: 1, title: 'lo brodi', begin: new Date(0xB), end: new Date(0xD) }
             ),
             [
                 { id: 0, index: 1, title: 'lo broda', begin: new Date(141), end: new Date(173) },
@@ -69,7 +70,7 @@ describe('sprints reducer', function() {
         assert.deepEqual(
             sprints(
                 [],
-                { type: 'DeleteSprint', sprintId: 0 }
+                { type: ActionType.DeleteSprint, sprintId: 0 }
             ),
             []
         );
@@ -79,7 +80,7 @@ describe('sprints reducer', function() {
                 [
                     { id: 0, index: 0, title: 'lo broda', begin: new Date(141), end: new Date(173) },
                 ],
-                { type: 'DeleteSprint', sprintId: 3141592 }
+                { type: ActionType.DeleteSprint, sprintId: 3141592 }
             ),
             [
                 { id: 0, index: 0, title: 'lo broda', begin: new Date(141), end: new Date(173) },
@@ -92,7 +93,7 @@ describe('sprints reducer', function() {
                     { id: 0, index: 1, title: 'lo broda', begin: new Date(141), end: new Date(173) },
                     { id: 1, index: 0, title: 'lo brode', begin: new Date(271), end: new Date(314) },
                 ],
-                { type: 'DeleteSprint', sprintId: 1 }
+                { type: ActionType.DeleteSprint, sprintId: 1 }
             ),
             [
                 { id: 0, index: 1, title: 'lo broda', begin: new Date(141), end: new Date(173) },

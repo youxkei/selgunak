@@ -1,18 +1,18 @@
-import Action from '../action/action';
+import Action, { ActionType } from '../action/action';
 import { Sprint } from '../state';
 import { calcId } from './reducer';
 
 
 export function sprints(sprints: Sprint[] = [], action: Action): Sprint[] {
     switch (action.type) {
-        case 'CreateSprint': {
+        case ActionType.CreateSprint: {
             const { title, begin, end } = action;
             const id = calcId(sprints);
 
             return [...sprints, { id, index: id, title, begin, end }];
         }
 
-        case 'UpdateSprint': {
+        case ActionType.UpdateSprint: {
             const { sprintId, title, begin, end } = action;
 
             return sprints.map(sprint => {
@@ -24,7 +24,7 @@ export function sprints(sprints: Sprint[] = [], action: Action): Sprint[] {
             });
         }
 
-        case 'DeleteSprint': {
+        case ActionType.DeleteSprint: {
             const { sprintId } = action;
 
             return sprints.filter(sprint => sprint.id !== sprintId);
