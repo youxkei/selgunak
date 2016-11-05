@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
-import { Button, Form, FormControl } from 'react-bootstrap';
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
 
 import { Dispatch } from '../action/action';
 import { createProject } from '../action/project';
@@ -29,7 +29,7 @@ interface ProjectsProps {
 }
 
 function Projects({ projectPropsList, createProject }: ProjectsProps) {
-    let titleField: HTMLInputElement;
+    let titleField: TextField;
 
     return (
         <div>
@@ -41,13 +41,14 @@ function Projects({ projectPropsList, createProject }: ProjectsProps) {
                     />
                 ))}
             </div>
-            <Form inline>
-                <FormControl
-                    ref={(formControl: FormControl) => { titleField = findDOMNode(formControl) as HTMLInputElement; }}
-                    placeholder="タイトル"
-                />
-                <Button onTouchTap={() => createProject(titleField.value)}>作る</Button>
-            </Form>
+            <TextField
+                ref={(textField: TextField) => { titleField = textField; }}
+                hintText="タイトル"
+            />
+            <FlatButton
+                label="作る"
+                onTouchTap={() => createProject(titleField.getValue())}
+            />
         </div>
     );
 }

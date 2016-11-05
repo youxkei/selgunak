@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import * as injectTapEventPlugin from 'react-tap-event-plugin';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import State from './state';
 import Action, { ActionType } from './action/action';
@@ -20,10 +21,12 @@ if (rootElement !== null) {
 
     render((
         <Provider store={store}>
-            <div>
-                <Sprints />
-                <Projects />
-            </div>
+            <MuiThemeProvider>
+                <div>
+                    <Sprints />
+                    <Projects />
+                </div>
+            </MuiThemeProvider>
         </Provider>
     ), rootElement);
 }

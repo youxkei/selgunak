@@ -36,9 +36,6 @@
     },
     "react-tap-event-plugin/react-tap-event-plugin.d.ts": {
       "ref": "cd94d1e2dd95797ebfbdab1d0e8e4a419d5cfc92"
-    },
-    "react-bootstrap/react-bootstrap.d.ts": {
-      "ref": "44be13ae844ec0721109542d5902e41438d72855"
     }
   }
 }
