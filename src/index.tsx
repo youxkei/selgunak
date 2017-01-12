@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import State from './state';
-import Action, { ActionType } from './action/action';
+import Action, { ActionType } from './action';
 import reducer from './reducer/reducer';
 
 import Projects from './container/projects';

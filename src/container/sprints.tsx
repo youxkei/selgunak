@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { Dispatch } from '../action/action';
 import State from '../state';
 import Sprint, { SprintProps } from './sprint';
 
@@ -36,8 +35,4 @@ function mapStateToProps({ sprints, tasks, taskSprintRelations }: State, ownProp
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch, ownProps: {}) {
-    return {};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sprints);
+export default connect(mapStateToProps)(Sprints);

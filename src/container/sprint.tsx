@@ -12,9 +12,6 @@ export interface SprintProps {
     taskInSprintPropsList: TaskInSprintProps[],
 }
 
-export interface SprintComponentProps extends SprintProps {
-}
-
 export function Sprint({ title, begin, end, taskInSprintPropsList }: SprintProps) {
     return (
         <Card>

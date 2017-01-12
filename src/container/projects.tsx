@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 
-import { Dispatch } from '../action/action';
-import { createProject } from '../action/project';
+import { ActionType, Dispatch } from '../action';
 import State, { Task } from '../state';
 import Project, { ProjectProps } from './project';
 import { TaskProps } from '../container/task';
@@ -25,10 +24,9 @@ function makeTaskProps(tasks: Task[], task: Task): TaskProps {
 
 interface ProjectsProps {
     projectPropsList: ProjectProps[],
-    createProject: (title: string) => void,
 }
 
-function Projects({ projectPropsList, createProject }: ProjectsProps) {
+function Projects({ projectPropsList, dispatch }: ProjectsProps & { dispatch: Dispatch }) {
     let titleField: TextField;
 
     return (
@@ -47,7 +45,10 @@ function Projects({ projectPropsList, createProject }: ProjectsProps) {
             />
             <FlatButton
                 label="作る"
-                onTouchTap={() => createProject(titleField.getValue())}
+                onTouchTap={() => dispatch({
+                    type: ActionType.CreateProject,
+                    title: titleField.getValue(),
+                })}
             />
         </div>
     );
@@ -65,10 +66,4 @@ function mapStateToProps({ projects, tasks }: State, ownProps: {}) {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch, ownProps: {}): { createProject: (title: string) => void } {
-    return {
-        createProject: title => dispatch(createProject(title)),
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Projects);
+export default connect(mapStateToProps)(Projects);

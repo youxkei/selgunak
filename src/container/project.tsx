@@ -5,9 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 
 import State from '../state';
-import { Dispatch } from '../action/action';
-import { createTask } from '../action/task';
-import { updateProject, deleteProject } from '../action/project';
+import { ActionType, Dispatch } from '../action';
 import Task, { TaskProps } from './task';
 
 
@@ -17,13 +15,7 @@ export interface ProjectProps {
     taskPropsList: TaskProps[],
 }
 
-export interface ProjectComponentProps extends ProjectProps {
-    createTask: (projectId: number, title: string, estimation: Date) => void;
-    updateProject: (projectId: number, title: string) => void,
-    deleteProject: (projectId: number) => void,
-}
-
-export function ProjectComponent({ id, title, taskPropsList, createTask, updateProject, deleteProject }: ProjectComponentProps)  {
+export function ProjectComponent({ id, title, taskPropsList, dispatch }: ProjectProps & { dispatch: Dispatch })  {
     let taskTitleField: TextField;
     let taskEstimationField: TextField;
     let projectTitleField: TextField;
@@ -49,7 +41,13 @@ export function ProjectComponent({ id, title, taskPropsList, createTask, updateP
                 />
                 <FlatButton
                     label="作成"
-                    onTouchTap={() => createTask(id, taskTitleField.getValue(), new Date(0, 0, 0, 0, parseInt(taskEstimationField.getValue(), 10)))}
+                    onTouchTap={() => dispatch({
+                        type: ActionType.CreateTask,
+                        projectId: id,
+                        parentId: null,
+                        title: taskTitleField.getValue(),
+                        estimation: new Date(0, 0, 0, 0, parseInt(taskEstimationField.getValue(), 10)),
+                    })}
                 />
             </CardText>
             <CardActions>
@@ -58,11 +56,18 @@ export function ProjectComponent({ id, title, taskPropsList, createTask, updateP
                 />
                 <FlatButton
                     label="更新"
-                    onTouchTap={() => updateProject(id, projectTitleField.getValue())}
+                    onTouchTap={() => dispatch({
+                        type: ActionType.UpdateProject,
+                        projectId: id,
+                        title: projectTitleField.getValue(),
+                    })}
                 />
                 <FlatButton
                     label="削除"
-                    onTouchTap={() => deleteProject(id)}
+                    onTouchTap={() => dispatch({
+                        type: ActionType.DeleteProject,
+                        projectId: id,
+                    })}
                 />
             </CardActions>
         </Card>
@@ -73,16 +78,4 @@ function mapStateToProps(state: State, ownProps: ProjectProps) {
     return ownProps;
 }
 
-function mapDispatchToProps(dispatch: Dispatch, ownProps: ProjectProps): {
-    createTask: (projectId: number, title: string, estimation: Date) => void,
-    updateProject: (projectId: number, title: string) => void,
-    deleteProject: (projectId: number) => void,
-} {
-    return {
-        createTask: (projectId, title, estimation) => dispatch(createTask(projectId, null, title, estimation)),
-        updateProject: (projectId, title) => dispatch(updateProject(projectId, title)),
-        deleteProject: projectId => dispatch(deleteProject(projectId)),
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectComponent);
+export default connect(mapStateToProps)(ProjectComponent);

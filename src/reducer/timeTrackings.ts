@@ -1,4 +1,4 @@
-import Action, { ActionType } from '../action/action';
+import Action, { ActionType } from '../action';
 import { TimeTracking } from '../state';
 import { calcId } from './reducer';
 

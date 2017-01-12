@@ -24,8 +24,6 @@ export type Action
     | { type: ActionType.StopTimeTracking, timeTrackingId: number, end: Date }
 ;
 
-export interface Dispatch extends ReduxDispatch<any> {
-    (action: Action): Action,
-}
+export type Dispatch = (action: Action) => void;
 
 export default Action;

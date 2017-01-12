@@ -1,6 +1,6 @@
 import * as assert from 'power-assert';
 
-import { ActionType } from '../action/action';
+import { ActionType } from '../action';
 import timeTrackings from './timeTrackings';
 
 
