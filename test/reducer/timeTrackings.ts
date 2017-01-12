@@ -1,7 +1,7 @@
 import * as assert from 'power-assert';
 
-import { ActionType } from '../action';
-import timeTrackings from './timeTrackings';
+import { ActionType } from '../../src/action';
+import timeTrackings from '../../src/reducer/timeTrackings';
 
 
 describe('timeTrackings reducer', function() {

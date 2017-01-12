@@ -1,7 +1,7 @@
 import * as assert from 'power-assert';
 
-import { ActionType } from '../action';
-import sprints from './sprints';
+import { ActionType } from '../../src/action';
+import sprints from '../../src/reducer/sprints';
 
 
 describe('sprints reducer', function() {

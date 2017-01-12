@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "build:watch": "npm run build -- -w",
-    "test": "mocha-webpack --colors --webpack-config webpack.config-test.js \"src/**/*.test.ts\"",
-    "test:watch": "npm test -- --watch"
+    "build:watch": "yarn run build -- -w",
+    "test": "mocha-webpack --colors --webpack-config webpack.config-test.js \"test/**/*.ts\"",
+    "test:watch": "yarn test -- --watch"
   },
   "author": "Hisayuki Mima",
   "license": "CC0-1.0",

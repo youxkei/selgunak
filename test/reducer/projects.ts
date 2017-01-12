@@ -1,7 +1,7 @@
 import * as assert from 'power-assert';
 
-import { ActionType } from '../action';
-import projects from './projects';
+import { ActionType } from '../../src/action';
+import projects from '../../src/reducer/projects';
 
 
 describe('projects reducer', function() {

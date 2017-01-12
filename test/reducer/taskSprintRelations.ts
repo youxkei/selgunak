@@ -1,7 +1,7 @@
 import * as assert from 'power-assert';
 
-import { ActionType } from '../action';
-import taskSprintRelations from './taskSprintRelations';
+import { ActionType } from '../../src/action';
+import taskSprintRelations from '../../src/reducer/taskSprintRelations';
 
 
 describe('taskSprintRelations reducer', function() {
