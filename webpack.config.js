@@ -5,14 +5,15 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['', '.webpack.js', '.web.js', '.js', '.ts', '.tsx'],
+        extensions: ['.js', '.jsx'],
     },
 
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.tsx?$/,
-                loader: 'ts',
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
             },
         ],
     },

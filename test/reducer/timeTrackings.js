@@ -1,6 +1,7 @@
+// @flow
+
 import * as assert from 'power-assert';
 
-import { ActionType } from '../../src/action';
 import timeTrackings from '../../src/reducer/timeTrackings';
 
 
@@ -9,7 +10,7 @@ describe('timeTrackings reducer', function() {
         assert.deepEqual(
             timeTrackings(
                 [],
-                { type: ActionType.StartTimeTracking, taskId: 0, begin: new Date(314) },
+                { type: 'StartTimeTracking', taskId: 0, begin: new Date(314) },
             ),
             [
                 { id: 0, taskId: 0, begin: new Date(314), end: null },
@@ -21,7 +22,7 @@ describe('timeTrackings reducer', function() {
                 [
                     { id: 0, taskId: 0, begin: new Date(314), end: null },
                 ],
-                { type: ActionType.StartTimeTracking, taskId: 1, begin: new Date(141) },
+                { type: 'StartTimeTracking', taskId: 1, begin: new Date(141) },
             ),
             [
                 { id: 0, taskId: 0, begin: new Date(314), end: null },
@@ -34,7 +35,7 @@ describe('timeTrackings reducer', function() {
         assert.deepEqual(
             timeTrackings(
                 [],
-                { type: ActionType.StopTimeTracking, timeTrackingId: 3141592, end: new Date(314) }
+                { type: 'StopTimeTracking', timeTrackingId: 3141592, end: new Date(314) }
             ),
             []
         );
@@ -44,7 +45,7 @@ describe('timeTrackings reducer', function() {
                 [
                     { id: 0, taskId: 0, begin: new Date(141), end: null },
                 ],
-                { type: ActionType.StopTimeTracking, timeTrackingId: 3141592, end: new Date(314) }
+                { type: 'StopTimeTracking', timeTrackingId: 3141592, end: new Date(314) }
             ),
             [
                 { id: 0, taskId: 0, begin: new Date(141), end: null },
@@ -57,7 +58,7 @@ describe('timeTrackings reducer', function() {
                     { id: 0, taskId: 1, begin: new Date(141), end: null },
                     { id: 1, taskId: 0, begin: new Date(173), end: null },
                 ],
-                { type: ActionType.StopTimeTracking, timeTrackingId: 1, end: new Date(314) }
+                { type: 'StopTimeTracking', timeTrackingId: 1, end: new Date(314) }
             ),
             [
                 { id: 0, taskId: 1, begin: new Date(141), end: null },

@@ -1,0 +1,11 @@
+[ignore]
+.*/node_modules/babel-.*
+.*/node_modules/flow-.*
+.*/node_modules/webpack.*
+.*/node_modules/mocha.*
+
+[include]
+
+[libs]
+
+[options]

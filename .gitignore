@@ -1,4 +1,5 @@
 /node_modules/
-/typings/
+/flow-typed/
 /index.js
 /.tmp
+/yarn-error.log

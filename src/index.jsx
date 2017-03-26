@@ -1,12 +1,13 @@
+// @flow
+
 import * as React from 'react';
 import { render } from 'react-dom';
-import * as injectTapEventPlugin from 'react-tap-event-plugin';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import State from './state';
-import Action, { ActionType } from './action';
 import reducer from './reducer/reducer';
 
 import Projects from './container/projects';
@@ -33,12 +34,12 @@ if (rootElement !== null) {
 
 
 store.dispatch({
-    type: ActionType.CreateProject,
+    type: 'CreateProject',
     title: 'ぷろじぇくと',
 });
 
 store.dispatch({
-    type: ActionType.CreateSprint,
+    type: 'CreateSprint',
     title: 'すぷりんと',
     begin: new Date(),
     end: new Date(),

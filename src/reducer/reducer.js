@@ -1,3 +1,5 @@
+// @flow
+
 import { combineReducers } from 'redux';
 
 import projects from './projects';
@@ -7,7 +9,7 @@ import sprints from './sprints';
 import taskSprintRelations from './taskSprintRelations';
 
 
-export function calcId(array: { id: number }[]): number {
+export function calcId<T: { id: number }>(array: T[]): number {
     if (array.length > 0) {
         return array[array.length - 1].id + 1;
     } else {

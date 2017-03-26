@@ -1,11 +1,13 @@
+// @flow
+
 import * as React from 'react';
 import { connect } from 'react-redux';
 import Card, {CardHeader, CardText, CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 
-import Action, { ActionType, Dispatch } from '../action';
-import State from '../state';
+import type { Dispatch } from '../action';
+import type { State } from '../state';
 
 
 export interface TaskProps {
@@ -16,7 +18,7 @@ export interface TaskProps {
     childrenTaskPropsList: TaskProps[],
 }
 
-export function TaskComponent({ id, projectId, title, estimation, childrenTaskPropsList, dispatch }: TaskProps & { dispatch: Dispatch }): React.ReactElement<any> /* avoiding implicit any with recursion */ {
+export function TaskComponent({ id, projectId, title, estimation, childrenTaskPropsList, dispatch }: TaskProps & { dispatch: Dispatch }) {
     let newTaskTitleField: TextField;
     let newTaskEstimationField: TextField;
     let newTitleField: TextField;
@@ -43,7 +45,7 @@ export function TaskComponent({ id, projectId, title, estimation, childrenTaskPr
                 <FlatButton
                     label="作る"
                     onTouchTap={() => dispatch({
-                        type: ActionType.CreateTask,
+                        type: 'CreateTask',
                         projectId, 
                         parentId: id,
                         title: newTaskTitleField.getValue(),
@@ -63,7 +65,7 @@ export function TaskComponent({ id, projectId, title, estimation, childrenTaskPr
                 <FlatButton
                     label="更新"
                     onTouchTap={() => dispatch({
-                        type: ActionType.UpdateTask,
+                        type: 'UpdateTask',
                         taskId: id,
                         title: newTitleField.getValue(),
                         estimation: new Date(0, 0, 0, 0, parseInt(newEstimationField.getValue(), 10))
@@ -72,7 +74,7 @@ export function TaskComponent({ id, projectId, title, estimation, childrenTaskPr
                 <FlatButton
                     label="削除"
                     onTouchTap={() => dispatch({
-                        type: ActionType.DeleteTask,
+                        type: 'DeleteTask',
                         taskId: id,
                     })}
                 />

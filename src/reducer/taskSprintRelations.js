@@ -1,11 +1,13 @@
-import Action, { ActionType } from '../action';
-import { TaskSprintRelation } from '../state';
+// @flow
+
+import type { Action } from '../action';
+import type { TaskSprintRelation } from '../state';
 import { calcId } from './reducer';
 
 
 export function taskSprintRelations(taskSprintRelations: TaskSprintRelation[] = [], action: Action): TaskSprintRelation[] {
     switch (action.type) {
-        case ActionType.RegisterTaskToSprint: {
+        case 'RegisterTaskToSprint': {
             const { taskId, sprintId } = action;
 
             if (taskSprintRelations.some(rel => taskId === rel.taskId && sprintId === rel.sprintId)) {
@@ -17,7 +19,7 @@ export function taskSprintRelations(taskSprintRelations: TaskSprintRelation[] = 
             }
         }
 
-        case ActionType.UnregisterTaskFromSprint: {
+        case 'UnregisterTaskFromSprint': {
             const { taskId, sprintId } = action;
 
             return taskSprintRelations.filter(taskSprintRelation => taskSprintRelation.taskId !== taskId || taskSprintRelation.sprintId !== sprintId);

@@ -1,19 +1,22 @@
+// @flow
+
 import * as React from 'react';
 import { connect } from 'react-redux';
 import Card, { CardHeader, CardText, CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 
-import State from '../state';
-import { ActionType, Dispatch } from '../action';
-import Task, { TaskProps } from './task';
+import type { Dispatch } from '../action';
+import type { State } from '../state';
+import type { TaskProps } from './task';
+import Task from './task';
 
 
-export interface ProjectProps {
+export type ProjectProps = {
     id: number,
     title: string,
     taskPropsList: TaskProps[],
-}
+};
 
 export function ProjectComponent({ id, title, taskPropsList, dispatch }: ProjectProps & { dispatch: Dispatch })  {
     let taskTitleField: TextField;
@@ -42,7 +45,7 @@ export function ProjectComponent({ id, title, taskPropsList, dispatch }: Project
                 <FlatButton
                     label="作成"
                     onTouchTap={() => dispatch({
-                        type: ActionType.CreateTask,
+                        type: 'CreateTask',
                         projectId: id,
                         parentId: null,
                         title: taskTitleField.getValue(),
@@ -57,7 +60,7 @@ export function ProjectComponent({ id, title, taskPropsList, dispatch }: Project
                 <FlatButton
                     label="更新"
                     onTouchTap={() => dispatch({
-                        type: ActionType.UpdateProject,
+                        type: 'UpdateProject',
                         projectId: id,
                         title: projectTitleField.getValue(),
                     })}
@@ -65,7 +68,7 @@ export function ProjectComponent({ id, title, taskPropsList, dispatch }: Project
                 <FlatButton
                     label="削除"
                     onTouchTap={() => dispatch({
-                        type: ActionType.DeleteProject,
+                        type: 'DeleteProject',
                         projectId: id,
                     })}
                 />

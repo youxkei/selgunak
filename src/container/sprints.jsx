@@ -1,13 +1,16 @@
+// @flow
+
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import State from '../state';
-import Sprint, { SprintProps } from './sprint';
+import type { State } from '../state';
+import type { SprintProps } from './sprint';
+import Sprint from './sprint';
 
 
-interface SprintsProps {
+export type SprintsProps = {
     sprintPropsList: SprintProps[],
-}
+};
 
 function Sprints({ sprintPropsList }: SprintsProps) {
     return (

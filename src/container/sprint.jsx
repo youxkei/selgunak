@@ -1,16 +1,19 @@
+// @flow
+
 import * as React from 'react';
 import { Card, CardHeader, CardMedia } from 'material-ui/Card';
 
-import TaskInSprint, { TaskInSprintProps } from './taskInSprint';
+import type { TaskInSprintProps } from './taskInSprint';
+import TaskInSprint from './taskInSprint';
 
 
-export interface SprintProps {
+export type SprintProps = {
     id: number,
     title: string,
     begin: Date,
     end: Date,
     taskInSprintPropsList: TaskInSprintProps[],
-}
+};
 
 export function Sprint({ title, begin, end, taskInSprintPropsList }: SprintProps) {
     return (

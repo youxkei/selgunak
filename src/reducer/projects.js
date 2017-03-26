@@ -1,18 +1,20 @@
-import Action, { ActionType } from '../action';
-import { Project } from '../state';
+// @flow
+
+import type { Action } from '../action';
+import type { Project } from '../state';
 import { calcId } from './reducer';
 
 
 export function projects(projects: Project[] = [], action: Action): Project[] {
     switch (action.type) {
-        case ActionType.CreateProject: {
+        case 'CreateProject': {
             const { title } = action;
             const id = calcId(projects);
 
             return [...projects, { id, index: id, title }];
         }
 
-        case ActionType.UpdateProject: {
+        case 'UpdateProject': {
             const { projectId, title } = action;
 
             return projects.map(project => {
@@ -24,7 +26,7 @@ export function projects(projects: Project[] = [], action: Action): Project[] {
             });
         }
 
-        case ActionType.DeleteProject: {
+        case 'DeleteProject': {
             const { projectId } = action;
 
             return projects.filter(project => project.id !== projectId);

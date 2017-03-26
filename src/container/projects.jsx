@@ -1,12 +1,15 @@
+// @flow
+
 import * as React from 'react';
 import { connect } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 
-import { ActionType, Dispatch } from '../action';
-import State, { Task } from '../state';
-import Project, { ProjectProps } from './project';
-import { TaskProps } from '../container/task';
+import type { Dispatch } from '../action';
+import type { State, Task } from '../state';
+import type { ProjectProps } from './project';
+import type { TaskProps } from '../container/task';
+import Project from './project';
 
 
 function makeTaskProps(tasks: Task[], task: Task): TaskProps {
@@ -22,9 +25,9 @@ function makeTaskProps(tasks: Task[], task: Task): TaskProps {
 }
 
 
-interface ProjectsProps {
+export type ProjectsProps = {
     projectPropsList: ProjectProps[],
-}
+};
 
 function Projects({ projectPropsList, dispatch }: ProjectsProps & { dispatch: Dispatch }) {
     let titleField: TextField;
@@ -46,7 +49,7 @@ function Projects({ projectPropsList, dispatch }: ProjectsProps & { dispatch: Di
             <FlatButton
                 label="作る"
                 onTouchTap={() => dispatch({
-                    type: ActionType.CreateProject,
+                    type: 'CreateProject',
                     title: titleField.getValue(),
                 })}
             />

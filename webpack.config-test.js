@@ -5,14 +5,20 @@ module.exports = {
     externals: [nodeExternals()],
 
     resolve: {
-        extensions: ['', '.webpack.js', '.web.js', '.js', '.ts', '.tsx'],
+        extensions: ['.js', '.jsx'],
     },
 
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.tsx?$/,
-                loader: 'webpack-espower!ts',
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['babel-preset-power-assert'],
+                    },
+                },
             },
         ],
     },
